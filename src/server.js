@@ -1,4 +1,5 @@
 import express from 'express';
+import compression from 'compression';
 import appRoute from 'server/routes/appRoute';
 
 const app = express();
@@ -7,6 +8,7 @@ const port = process.env.PORT || 5000;
 
 app.locals.env = env;
 
+app.use(compression());
 app.use(express.static('dist/public'));
 app.use(express.static('public'));
 app.set('views', './src/server/views');

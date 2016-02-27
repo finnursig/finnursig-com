@@ -53,8 +53,9 @@ module.exports = {
         loaders: ['babel']
       },
       {
+        id: 'less',
         test: /\.less$/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
+        loader: 'style!css!postcss!less'
       }
     ]
   },
