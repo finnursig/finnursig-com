@@ -43,6 +43,7 @@
     "express": "^4.13.3",
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
+    "null-loader": "^0.1.1",
     "postcss-loader": "^0.8.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
