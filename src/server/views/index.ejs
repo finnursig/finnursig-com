@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>finnursig.com</title>
+
   <% if(env === 'production') { %>
-  <link rel="stylesheet" type="text/css" href="/client.css" />
+    <% assets.filter(asset => asset.name.indexOf('css') > 0).forEach(asset => { %>
+      <link rel="stylesheet" type="text/css" href="/<%= asset.name %>" />
+    <%}) %>
   <% } %>
 </head>
 <body>
@@ -14,7 +20,9 @@
 <script src="http://localhost:8080/webpack-dev-server.js"></script>
 <script src="http://localhost:8080/static/client.js"></script>
 <% } else { %>
-<script src="/client.js"></script>
+  <% assets.filter(asset => asset.name.indexOf('js') > 0).forEach(asset => { %>
+    <script src="/<%= asset.name %>"></scripts>
+  <%}) %>
 <% } %>
 
 </body>

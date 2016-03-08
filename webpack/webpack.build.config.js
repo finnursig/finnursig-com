@@ -1,3 +1,4 @@
+var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -7,6 +8,8 @@ var server = require('./webpack.server.config');
 client.debug = server.debug = false;
 client.devtool = server.devtool = false;
 
+client.output.filename = 'client-[hash].js';
+client.output.sourceMapFilename = 'client-[hash].map';
 client.entry.shift();
 client.plugins.shift();
 client.module.loaders = client.module.loaders.map((item) => {
@@ -18,7 +21,14 @@ client.module.loaders = client.module.loaders.map((item) => {
 });
 
 client.plugins = client.plugins.concat([
-  new ExtractTextPlugin('client.css'),
+  function() {
+    this.plugin('done', function(stats) {
+      require('fs').writeFileSync(
+        path.join(__dirname, '..', 'dist', 'stats.json'),
+        JSON.stringify(stats.toJson().assets));
+    });
+  },
+  new ExtractTextPlugin('client-[hash].css'),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.DefinePlugin({
     'process.env': {

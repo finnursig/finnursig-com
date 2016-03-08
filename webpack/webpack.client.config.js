@@ -50,7 +50,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?/,
-        loaders: ['babel']
+        loader: 'babel'
       },
       {
         id: 'less',
@@ -65,9 +65,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
       React: 'react'
-    })
+    }),
+    new webpack.NoErrorsPlugin()
   ]
 }
