@@ -1,8 +1,0 @@
-./node_modules/.bin/webpack --config webpack/webpack.server.config.js
-./node_modules/.bin/webpack --watch --config webpack/webpack.server.config.js &
-./node_modules/.bin/webpack-dev-server --hot --config webpack/webpack.client.config.js &
-
-./node_modules/.bin/nodemon dist/server.js
-
-kill %1
-kill %2
